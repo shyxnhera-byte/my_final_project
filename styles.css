@@ -94,3 +94,41 @@ main {
     flex: 1;
     color: white;
 }
+.dashboard-cards {
+
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 20px;
+padding: 20px 30px;
+}
+.card {
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    min-height: 120px;
+    box-sizing: border-box;
+    transition: 0.2s ease;
+
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    border-color: #4f8cff;
+}
+.card > span {
+    font-size: 30px;
+}
+.card p {
+    margin: 0 0 8px;
+    color: #aeb4c0;
+    font-size: 21px;
+}
+.card h2 {
+    margin: 0;
+    color: white;
+    font-size: 26px;
+}
