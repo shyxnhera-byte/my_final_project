@@ -155,7 +155,12 @@ main {
 .bottom-panels {
   display: flex;
   gap: 20px;
+  margin: 10px 30px 30px;
 }
 .panel {
   flex: 1;
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 20px;
 }
