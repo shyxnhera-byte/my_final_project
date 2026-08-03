@@ -79,3 +79,7 @@ yLabels.forEach((value) => {
 
     ctx.fillText(`$${value}`, padding - 10, y + 5);
 })
+
+//product storage
+let products = [];
+
