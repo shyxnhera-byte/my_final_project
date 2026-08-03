@@ -31,5 +31,70 @@
             <span>👤</span>
           </div>
         </header>
+        <section class="inventory-header">
+            <h1>Sales</h1>
+            <p>Record a new sale for your store</p>
+        </section>
+        <section class="sales-layout">
+        <div class="new-sale">
+            <h2>New Sale</h2>
+            <form>
+                <div class="form-group">
+                    <label for="sale-product">Product</label>
+                    <select name="sale-product" id="sale-product">
+                    <option value="">Select a product</option>
+                    <option value="bread">Bread - $1.40</option>
+                    <option value="milk">Milk - $1.50</option>
+                    <option value="cooking-oil">Cooking Oil - $3.20</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="payment-method">Payment Method</label>
+                    <select name="payment-method" id="payment-method">
+                    <option value="cash">Cash</option>
+                    <option value="card">Card</option>
+                </select>
+                </div>
+                <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+            </form>
+            </div>
+            <div class="cart">
+                <h2>Current Sale</h2>
+                <table class="inventory-table">.
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Subtotal</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Bread</td>
+                            <td>2</td>
+                            <td>$1.40</td>
+                            <td>$2.80</td>
+                            <td><button class="action-btn delete-btn">Remove</button></td>
+                        </tr>
+                        <tr>
+                            <td>Milk</td>
+                            <td>1</td>
+                            <td>$1.50</td>
+                            <td>$1.50</td>
+                            <td><button class="action-btn delete-btn">Remove</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="cart-total">
+                    <span>Total</span>
+                    <span>$4.30</span>
+                </div>
+                <button class="complete-sale-btn">Complete Sale</button>
+            </div>
+
+        </section>
 </body>
 </html>
