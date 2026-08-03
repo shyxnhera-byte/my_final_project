@@ -164,3 +164,154 @@ main {
   border-radius: 12px;
   padding: 20px;
 }
+
+.add-product {
+  background-color: #211A3A;
+  padding: 25px;
+  margin: 20px 25px;
+  border-radius: 12px;
+}
+.add-product h2 {
+  color: white;
+  margin-bottom: 20px;
+}
+.add-product form {
+  display: flex;
+  flex-direction: column;
+width: 60%;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+}
+.form-group input {
+  
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  border: 1px solid #3b4a63;
+  border-radius: 8px;
+  background-color: #182235;
+  color: #ffffff;
+  font-size: 15px;
+  
+}
+
+.inventory-header h1 {
+  font-size: 32px;
+  margin-bottom: 5px;
+  color: #ffffff;
+}
+.inventory-header p {
+  font-size: 16px;
+  color: #a8b3c7;
+  margin-top: 0;
+}
+.inventory-header {
+  margin-left: 30px;
+}
+
+form button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: #5b5ce2;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 150px;
+}
+
+form button:hover {
+  background-color: #7475f0;
+}
+.product-list {
+  background-color: #211A3A;
+  padding: 25px;
+  margin: 20px 25px;
+  border-radius: 12px;
+}
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.list-header h2 {
+  color: white;
+  margin: 0;
+}
+
+.search-bar {
+  padding: 10px 14px;
+  border: 1px solid #3b4a63;
+  border-radius: 8px;
+  background-color: #182235;
+  color: #ffffff;
+  font-size: 14px;
+  width: 220px;
+}
+.inventory-table {
+  width: 100px;
+  border-collapse: collapse;
+}
+.inventory-table th {
+  text-align: center;
+  padding: 12px;
+  color: #a8b3c7;
+  font-size: 13px;
+  text-transform: uppercase;
+  border-bottom: 1px solid #2a3550;
+}
+.inventory-table td {
+  padding: 12px;
+  color: #ffffff;
+  font-size: 12px;
+  border-bottom: 1px solid #2a3550;
+}
+.status {
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+}
+.in-stock {
+  background-color: rgba(76, 217, 100, 0.15);
+  color: #4cd964;
+}
+.low-stock {
+  background-color: rgba(255, 159, 10, 0.15);
+  color: #ff9f0a;
+}
+.out-of-stock {
+  background-color: rgba(255, 69, 58, 0.15);
+  color: #ff453a;
+}
+.action-btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  margin-right: 6px;
+}
+.edit-btn {
+  background-color: #5b5ce2;
+  color: white;
+}
+.edit-btn:hover {
+background-color: #7475f0;
+}
+.delete-btn {
+  background-color: #3b4a63;
+  color: white;
+}
+.delete-btn:hover {
+  background-color: #ff453a;
+}

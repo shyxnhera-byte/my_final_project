@@ -31,29 +31,99 @@
             <span>👤</span>
           </div>
         </header>
-        <section class="inventory-content">
+        <section class="inventory-header">
             <h1>Inventory</h1>
             <p>Manage your products and stock levels.</p>
 
         </section>
-        <section class="add-product">
+        <section>
+            <div class="add-product">
             <h2>Add New Product</h2>
             <form>
+                <div class="form-group">
                 <label for="product-name">Product Name</label>
                 <input type="text" id="product-name" name="product-name">
+                </div>
+<div class="form-group">
                 <label for="category">Category</label>
                 <input type="text" id="category" name="category">
+                </div>
+                <div class="form-group">
                 <label for="buying-price">Buying Price</label>
                 <input type="number" id="buying-price" name="buying-price">
+                </div>
+                <div class="form-group">
                 <label for="selling-price">Selling Price</label>
                 <input type="number" id="selling-price" name="selling-price">
+                </div>
+                <div class="form-group">
                 <label for="quantity">Quantity</label>
                 <input type="number" id="quantity" name="quantity">
+                </div>
+                <div class="form-group">
                 <label for="low-stock">Low Stock Alert</label>
                 <input type="number" id="low-stock" name="low-stock">
+                </div>
                 <button type="submit">Add Product</button>
-
             </form>
+            </div>
+        </section>
+        <section class="product-list">
+            <div class="list-header">
+                <h2>All Products</h2>
+                <input type="text" class="search-bar" placeholder="Search products...">
+            </div>
+            <table class="inventory-table">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Category</th>
+                        <th>Buying Price</th>
+                        <th>Selling Price</th>
+                        <th>Quantity</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Bread</td>
+                        <td>Bakery</td>
+                        <td>$0.80</td>
+                        <td>$1.40</td>
+                        <td>32</td>
+                        <td><span class="status in-stock">In Stock</span></td>
+                        <td>
+                            <button class="action-btn edit-btn">Edit</button>
+                            <button class="action-btn delete-btn">Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Milk</td>
+                        <td>Dairy</td>
+                        <td>$1.10</td>
+                        <td>$1.50</td>
+                        <td>4</td>
+                        <td><span class="status low-stock">Low Stock</span></td>
+                        <td>
+                            <button class="action-btn edit-btn">Edit</button>
+                            <button class="action-btn delete-btn">Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Cooking Oil</td>
+                        <td>Pantry</td>
+                        <td>$2.50</td>
+                        <td>$3.20</td>
+                        <td>0</td>
+                        <td><span class="status out-of-stock">Out of Stock</span></td>
+                        <td>
+                            <button class="action-btn edit-btn">Edit</button>
+                            <button class="action-btn delete-btn">Delete</button> 
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </section>
        </main>
 </body>
