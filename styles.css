@@ -315,3 +315,80 @@ background-color: #7475f0;
 .delete-btn:hover {
   background-color: #ff453a;
 }
+
+.sales-layout {
+  display: flex;
+  gap: 25px;
+  margin: 20px 25px;
+}
+.new-sale {
+  background-color: #211A3A;
+  padding: 25px;
+  border-radius: 12px;
+  width: 35%;
+}
+.new-sale h2 {
+  color: white;
+  margin-bottom: 20px;
+}
+.new-sale form {
+  display: flex;
+  flex-direction: column;
+}
+.form-group select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  border: 1px solid #3b4a63; 
+  border-radius: 8px;
+  background-color: #182235;
+  color: #ffffff;
+  font-size: 15px;
+}
+.add-to-cart-button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: #5b5ce2;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 5px;
+}
+.add-to-cart-button:hover {
+  background-color: #7475f0;
+}
+.cart {
+  background-color: #211A3A;
+  padding: 25px;
+  border-radius: 12px;
+  flex: 1;
+}
+.cart h2 {
+  color: white;
+  margin-bottom: 20px;
+
+}
+.cart-total {
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 20px 0;
+  padding-top: 15px;
+  border-top: 1px solid #3b4a63;
+}
+.complete-sale-btn {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  background-color: #4cd964;
+  color: #10241a;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
