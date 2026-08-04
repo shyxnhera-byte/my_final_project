@@ -269,20 +269,23 @@ form button:hover {
 .inventory-table {
   width: 100px;
   border-collapse: collapse;
+  table-layout: fixed;
 }
 .inventory-table th {
   text-align: center;
-  padding: 12px;
+  padding: 18px 20px;
   color: #a8b3c7;
-  font-size: 13px;
+  font-size: 20px;
   text-transform: uppercase;
   border-bottom: 1px solid #2a3550;
+  letter-spacing: 0.5px;
 }
 .inventory-table td {
-  padding: 12px;
+  padding: 16px 20px;
   color: #ffffff;
-  font-size: 12px;
+  font-size: 16px;
   border-bottom: 1px solid #2a3550;
+  text-align: center;
 }
 .status {
   padding: 5px 10px;
