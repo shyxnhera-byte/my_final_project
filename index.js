@@ -1,8 +1,10 @@
 const canvas = document.getElementById("salesChart");
-const ctx = canvas.getContext("2d") // stores 2d drawing tools for actual drawing
+if (canvas) {
+const ctx = canvas.getContext("2d"); // stores 2d drawing tools for actual drawing
 
 //match canvas resolution to its actual rendered size
 // Makes canvas internal drawing grid match its actual displayed page
+
 canvas.width = canvas.clientWidth;
 canvas.height = canvas.clientHeight;
 
@@ -17,7 +19,7 @@ ctx.moveTo(padding, padding); //move invisible pen to a staring point without dr
 //starting(60pixels from  left, 60 from top)
 ctx.lineTo(padding, canvas.height - padding); //starts drawing from current pstn to total canvas height - 60
 //pen already at the botton...no need of moveTo
-//x axis 
+//x axis
 ctx.lineTo(canvas.width - padding, canvas.height - padding); //draw to right till
 
 ctx.strokeStyle = "white"; // for outlines
@@ -29,27 +31,29 @@ const sales = [120, 180, 150, 220, 190, 260, 240];
 
 ctx.fillStyle = "white"; //color when filling in text n shapes
 days.forEach((day, index) => {
-  const x = padding + index * ((canvas.width - padding * 2 ) / (days.length - 1));
+  const x =
+    padding + index * ((canvas.width - padding * 2) / (days.length - 1));
   //ensures we dont start at the edge...divide available space by the number of spaces
   ctx.fillText(day, x, canvas.height - padding + 25);
-});  // fillText(text , x, y)draws actual txt in a specific coordinate
+}); // fillText(text , x, y)draws actual txt in a specific coordinate
 
 const maxSales = Math.max(...sales); //find largest sale in array sales ...spread numbers individually
 const chartHeight = canvas.height - padding * 2;
 
 //map goes thro each sale at a time...for each we'll calculate x and y pstn
-const points = sales.map((sale,index) => {
-    const x = padding + index * ((canvas.width - padding * 2)/(sales.length - 1));
-    const y = canvas.height - padding - (sale / maxSales) * chartHeight;
-    //  bcoz canvas y coordinates increase downward
-    return {x, y}
-    //points end up like [{x: 280, y: 300}]
+const points = sales.map((sale, index) => {
+  const x =
+    padding + index * ((canvas.width - padding * 2) / (sales.length - 1));
+  const y = canvas.height - padding - (sale / maxSales) * chartHeight;
+  //  bcoz canvas y coordinates increase downward
+  return { x, y };
+  //points end up like [{x: 280, y: 300}]
 });
 
 ctx.beginPath();
 ctx.moveTo(points[0].x, points[0].y);
 points.forEach((point) => {
-    ctx.lineTo(point.x, point.y);
+  ctx.lineTo(point.x, point.y);
 });
 
 ctx.strokeStyle = "white";
@@ -57,10 +61,10 @@ ctx.lineWidth = 3;
 ctx.stroke();
 
 points.forEach((point) => {
-    ctx.beginPath();
-    ctx.arc(point.x, point.y, 5, 0, Math.PI * 2); // arc(x, y, radius, startAngle, endAngle)
-    ctx.fillStyle = "white";
-    ctx.fill(); //fills circle with current fillStyle
+  ctx.beginPath();
+  ctx.arc(point.x, point.y, 5, 0, Math.PI * 2); // arc(x, y, radius, startAngle, endAngle)
+  ctx.fillStyle = "white";
+  ctx.fill(); //fills circle with current fillStyle
 });
 /*
 points.forEach((point, index) => {
@@ -72,16 +76,16 @@ points.forEach((point, index) => {
 */
 const yLabels = [0, 50, 100, 150, 200, 250, 300];
 yLabels.forEach((value) => {
-    const y = canvas.height - padding - (value / maxSales) * chartHeight;
-    ctx.font = "14px Arial";
-    ctx.fillStyle = "white";
-    ctx.textAlign = "right"; //relative to x coordinate
+  const y = canvas.height - padding - (value / maxSales) * chartHeight;
+  ctx.font = "14px Arial";
+  ctx.fillStyle = "white";
+  ctx.textAlign = "right"; //relative to x coordinate
 
-    ctx.fillText(`$${value}`, padding - 10, y + 5);
-})
-
+  ctx.fillText(`$${value}`, padding - 10, y + 5);
+});
+}
 //product data
-const products = [
+/*const products = [
     {
         id: 1,
         name: "Bread",
@@ -102,12 +106,113 @@ const products = [
     },
     {
         id: 3,
-        name: "Cooking Oil"
-        category: "Pantry"
+        name: "Cooking Oil",
+        category: "Pantry",
         buyingPrice: 2.50,
         sellingPrice: 3.20,
         quantity: 0,
         lowStock: 5
     }
-];
+];*/
+/*
+function displayProducts(){
+    const tableBody = document.querySelector(".inventory-table tbody");
+    tableBody.innerHTML = "";
+    products.forEach(function(product){
+        const row = document.createElement ("tr");
+        row.innerHTML = `
+        <td>${product.name}</td>
+        <td>${product.category}</td>
+        <td>${product.buyingPrice.toFixed(2)}</td>
+        <td>$${product.sellingPrice.tofixed(2)}</td>
+        <td>${product.quantity}</td>
+        <td>${product.quantity <= product.lowStock 
+            ? "Low Stock"
+            : "In Stock"}
+        </td>
+        `;
+        tableBody.appendChild(row);
+    }
+);
+}
+*/
 
+//load existing products or start with an empty list
+let products = JSON.parse(localStorage.getItem("products")) || [];
+//grab references to the HTML
+const productForm = document.querySelector(".add-product form");
+const tableBody = document.querySelector(".inventory-table tbody");
+//function to save array in local storage
+function saveProducts() {
+  localStorage.setItem("products", JSON.stringify(products));
+}
+//function to figure out stock status
+function getStatus(quantity, lowStockLevel) {
+  if (quantity === 0) return { text: "Out of Stock", class: "out-of-stock" };
+  if (quantity <= lowStockLevel)
+    return { text: "Low Stock", class: "low-stock" };
+  return { text: "In Stock", class: "in-stock" };
+}
+
+//function to redraw the whole table fom the array
+function renderTable() {
+  tableBody.innerHTML = ""; //clear old rows first
+  products.forEach((product, index) => {
+    const status = getStatus(product.quantity, product.lowStock);
+    const row = document.createElement("tr");
+    row.innerHTML = `
+        <td>${product.name}</td>
+        <td>${product.category}</td>
+        <td>${product.buyingPrice.toFixed(2)}</td>
+        <td>${product.sellingPrice.toFixed(2)}</td>
+        <td>${product.quantity}</td>
+        <td><span class="status ${status.class}">${status.text}</span></td>
+        <td>
+        <button class="action-btn edit-btn" data-index="${index}">Edit</button>
+        <button class="action-btn delete-btn" data-index="${index}">Delete</button>
+        </td>
+        `;
+    tableBody.appendChild(row);
+  });
+}
+//handle the add product form submission
+productForm.addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  const newProduct = {
+    name: document.getElementById("product-name").value,
+    category: document.getElementById("category").value,
+    buyingPrice: parseFloat(document.getElementById("buying-price").value),
+    sellingPrice: parseFloat(document.getElementById("selling-price").value),
+    quantity: parseInt(document.getElementById("quantity").value),
+    lowStock: parseInt(document.getElementById("low-stock").value),
+  };
+  products.push(newProduct);
+  saveProducts();
+  renderTable();
+  productForm.reset(); //clear form fields
+});
+
+//handle edit/delete clicks
+tableBody.addEventListener("click", function (e) {
+  const index = e.target.getAttribute("data-index");
+  if (index === null) return;
+  if (e.target.classList.contains("delete-btn")) {
+    products.splice(index, 1);
+    saveProducts();
+    renderTable();
+  }
+  if (e.target.classList.contains("edit-btn")) {
+    const product = products[index];
+    document.getElementById("product-name").value = product.name;
+    document.getElementById("category").value = product.category;
+    document.getElementById("buying-price").value = product.buyingPrice;
+    document.getElementById("selling-price").value = product.sellingPrice;
+    document.getElementById("quantity").value = product.quantity;
+    document.getElementById("low-stock").value = product.lowStock;
+    products.splice(index, 1);
+    saveProducts();
+    renderTable();
+  }
+});
+renderTable();
