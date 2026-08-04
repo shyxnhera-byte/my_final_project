@@ -84,58 +84,8 @@ yLabels.forEach((value) => {
   ctx.fillText(`$${value}`, padding - 10, y + 5);
 });
 }
-//product data
-/*const products = [
-    {
-        id: 1,
-        name: "Bread",
-        category: "Bakery",
-        buyingPrice: 0.80,
-        sellingPrice: 1.40,
-        quantity: 32,
-        lowStock: 5
-    },
-    {
-        id: 2,
-        name: "Milk",
-        category: "Dairy",
-        buyingPrice: 1.10,
-        sellingPrice: 1.50,
-        quantity: 4,
-        lowStock: 5,
-    },
-    {
-        id: 3,
-        name: "Cooking Oil",
-        category: "Pantry",
-        buyingPrice: 2.50,
-        sellingPrice: 3.20,
-        quantity: 0,
-        lowStock: 5
-    }
-];*/
-/*
-function displayProducts(){
-    const tableBody = document.querySelector(".inventory-table tbody");
-    tableBody.innerHTML = "";
-    products.forEach(function(product){
-        const row = document.createElement ("tr");
-        row.innerHTML = `
-        <td>${product.name}</td>
-        <td>${product.category}</td>
-        <td>${product.buyingPrice.toFixed(2)}</td>
-        <td>$${product.sellingPrice.tofixed(2)}</td>
-        <td>${product.quantity}</td>
-        <td>${product.quantity <= product.lowStock 
-            ? "Low Stock"
-            : "In Stock"}
-        </td>
-        `;
-        tableBody.appendChild(row);
-    }
-);
-}
-*/
+
+
 
 //load existing products or start with an empty list
 let products = JSON.parse(localStorage.getItem("products")) || [];
@@ -330,4 +280,25 @@ if (historyBody && pageTitle && pageTitle.textContent === "Sales History"){
         historyBody.appendChild(row);
     });
    
+    }
+
+    const totalProductsEl = document.querySelector(".stat-total-products");
+    const todaysSalesEl = document.querySelector(".stat-today-sales");
+    const totalSalesEl = document.querySelector(".stat-total-sales");
+    const lowStockEl = document.querySelector(".stat-low-stock");
+
+    if (totalProductsEl) {
+        const sales = JSON.parse(localStorage.getItem("sales")) || [];
+        // total products
+        totalProductsEl.textContent = products.length;
+        //todays sales
+        const today = new Date().toDateString();
+        const todaysTotal = sales
+            .filter((sale) => new Date(sale.date).toDateString() === today)
+            .reduce((sum, sale) => sum + sale.total, 0);
+     todaysSalesEl.textContent = `$${todaysTotal.toFixed(2)}`;
+     totalSalesEl.textContent = sales.length
+     
+     const lowStockCount = products.filter((p) => p.quantity <= p.lowStock).length;
+     lowStockEl.textContent = lowStockCount;
     }
