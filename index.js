@@ -80,6 +80,34 @@ yLabels.forEach((value) => {
     ctx.fillText(`$${value}`, padding - 10, y + 5);
 })
 
-//product storage
-let products = [];
+//product data
+const products = [
+    {
+        id: 1,
+        name: "Bread",
+        category: "Bakery",
+        buyingPrice: 0.80,
+        sellingPrice: 1.40,
+        quantity: 32,
+        lowStock: 5
+    },
+    {
+        id: 2,
+        name: "Milk",
+        category: "Dairy",
+        buyingPrice: 1.10,
+        sellingPrice: 1.50,
+        quantity: 4,
+        lowStock: 5,
+    },
+    {
+        id: 3,
+        name: "Cooking Oil"
+        category: "Pantry"
+        buyingPrice: 2.50,
+        sellingPrice: 3.20,
+        quantity: 0,
+        lowStock: 5
+    }
+];
 
