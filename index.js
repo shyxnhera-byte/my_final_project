@@ -216,3 +216,5 @@ tableBody.addEventListener("click", function (e) {
   }
 });
 renderTable();
+
+const saleForm = document.querySelector(".new-sale form")
