@@ -311,3 +311,4 @@ document.querySelector(".complete-sale-btn").addEventListener("click", function(
     alert("Sale completed");
 });
 }
+         
