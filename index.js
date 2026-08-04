@@ -92,7 +92,7 @@ if (saleForm) {
         products.forEach((product, index) => {
             const option = document.createElement("option");
             option.value = index;
-            option.textContent = `${product.name} - $${product.sellingPrice.toFixed(2)}`;
+            option.textContent = `${product.name} - KES${product.sellingPrice.toFixed(2)}`;
             productSelect.appendChild(option);
         });
     }
