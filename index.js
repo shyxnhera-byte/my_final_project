@@ -311,4 +311,23 @@ document.querySelector(".complete-sale-btn").addEventListener("click", function(
     alert("Sale completed");
 });
 }
-         
+  
+const historyBody = document.querySelector(".inventory-table tbody");
+const pageTitle = document.querySelector(".inventory-header h1");
+
+if (historyBody && pageTitle && pageTitle.textContent === "Sales History"){
+    const sales = JSON.parse(localStorage.getItem("sales")) || [];
+    sales.slice().reverse().forEach((sale) => {
+        const itemsSummary = sale.items.map((item) => `${item.name} (x${item.qty})`).join(",");
+        const dateFormatted = new Date(sale.date).toLocaleString();
+        const row = document.createElement("tr");
+        row.innerHTML =`
+        <td>${dateFormatted}</td>
+        <td>${itemsSummary}</td>
+        <td>${sale.total.toFixed(2)}</td>
+        <td>${sale.paymentMethod}</td>
+        `;
+        historyBody.appendChild(row);
+    });
+   
+    }
