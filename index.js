@@ -108,8 +108,8 @@ function renderCart()  {
         row.innerHTML = `
         <td>${item.name}</td>
         <td>${item.qty}</td>
-        <td>$${item.price.toFixed(2)}</td>
-        <td>$${item.subtotal.toFixed(2)}</td>
+        <td>KES${item.price.toFixed(2)}</td>
+        <td>KES${item.subtotal.toFixed(2)}</td>
         <td><button class="action-btn delete-btn" data-index="${index}">Remove</button></td>
         `;
         cartBody.appendChild(row);
@@ -208,7 +208,7 @@ if (historyBody && pageTitle && pageTitle.textContent === "Sales History"){
         const todaysTotal = sales
             .filter((sale) => new Date(sale.date).toDateString() === today)
             .reduce((sum, sale) => sum + sale.total, 0);
-     todaysSalesEl.textContent = `$${todaysTotal.toFixed(2)}`;
+     todaysSalesEl.textContent = `KES${todaysTotal.toFixed(2)}`;
      totalSalesEl.textContent = sales.length
      
      const lowStockCount = products.filter((p) => p.quantity <= p.lowStock).length;
