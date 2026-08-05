@@ -1,12 +1,17 @@
 
 //load existing products or start with an empty list
+//LOCAL STORAGE IS A BROWSER STORAGE....IT ALLOWS WEBSITE TO SAVE INFO INSIDE BROWSER
+//stores info as text
 let products = JSON.parse(localStorage.getItem("products")) || [];
+//if there are saved products or not(start in a new array)
 //grab references to the HTML
 const productForm = document.querySelector(".add-product form");
 const tableBody = document.querySelector(".inventory-table tbody");
 //function to save array in local storage
 function saveProducts() {
   localStorage.setItem("products", JSON.stringify(products));
+  //converts array to text so to be stored
+  //save info in local storage under name products
 }
 //function to figure out stock status
 function getStatus(quantity, lowStockLevel) {
@@ -20,16 +25,17 @@ function getStatus(quantity, lowStockLevel) {
 function renderTable() {
   tableBody.innerHTML = ""; //clear old rows first
   products.forEach((product, index) => {
+    //calling the function and giving it 2 pieces of info
     const status = getStatus(product.quantity, product.lowStock);
     const row = document.createElement("tr");
     row.innerHTML = `
-        <td>${product.name}</td>
+        <td>${product.name}</td> 
         <td>${product.category}</td>
         <td>${product.buyingPrice.toFixed(2)}</td>
         <td>${product.sellingPrice.toFixed(2)}</td>
         <td>${product.quantity}</td>
         <td><span class="status ${status.class}">${status.text}</span></td>
-        <td>
+        <td> 
         <button class="action-btn edit-btn" data-index="${index}">Edit</button>
         <button class="action-btn delete-btn" data-index="${index}">Delete</button>
         </td>
