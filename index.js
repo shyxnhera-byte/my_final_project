@@ -22,9 +22,9 @@ function getStatus(quantity, lowStockLevel) {
 }
 
 //function to redraw the whole table fom the array
-function renderTable() {
+function renderTable(list = products) {
   tableBody.innerHTML = ""; //clear old rows first
-  products.forEach((product, index) => {
+  list.forEach((product, index) => {
     //calling the function and giving it 2 pieces of info
     const status = getStatus(product.quantity, product.lowStock);
     const row = document.createElement("tr");
@@ -36,12 +36,23 @@ function renderTable() {
         <td>${product.quantity}</td>
         <td><span class="status ${status.class}">${status.text}</span></td>
         <td> 
-        <button class="action-btn edit-btn" data-index="${index}">Edit</button>
-        <button class="action-btn delete-btn" data-index="${index}">Delete</button>
+        <button class="action-btn edit-btn" data-index="${products.indexOf(product)}">Edit</button>
+        <button class="action-btn delete-btn" data-index="${products.indexOf(product)}">Delete</button>
         </td>
         `;
     tableBody.appendChild(row);
   });
+}
+const searchInput = document.querySelector(".search-bar");
+if (searchInput) {
+    searchInput.addEventListener("input", function(){
+        const query = searchInput.value.toLowerCase();
+        const filtered = products.filter((product) =>
+        product.name.toLowerCase().includes(query) ||
+        product.category.toLowerCase().includes(query)
+    );
+    renderTable(filtered);
+    });
 }
 //handle the add product form submission
 if (productForm) {
@@ -85,6 +96,8 @@ tableBody.addEventListener("click", function (e) {
   }
 });
 renderTable();
+
+
 }
 const saleForm = document.querySelector(".new-sale form");
 const productSelect = document.getElementById("sale-product");
@@ -114,8 +127,8 @@ function renderCart()  {
         row.innerHTML = `
         <td>${item.name}</td>
         <td>${item.qty}</td>
-        <td>KES${item.price.toFixed(2)}</td>
-        <td>KES${item.subtotal.toFixed(2)}</td>
+        <td>KES ${item.price.toFixed(2)}</td>
+        <td>KES ${item.subtotal.toFixed(2)}</td>
         <td><button class="action-btn delete-btn" data-index="${index}">Remove</button></td>
         `;
         cartBody.appendChild(row);
@@ -214,7 +227,7 @@ if (historyBody && pageTitle && pageTitle.textContent === "Sales History"){
         const todaysTotal = sales
             .filter((sale) => new Date(sale.date).toDateString() === today)
             .reduce((sum, sale) => sum + sale.total, 0);
-     todaysSalesEl.textContent = `KES${todaysTotal.toFixed(2)}`;
+     todaysSalesEl.textContent = `KES ${todaysTotal.toFixed(2)}`;
      totalSalesEl.textContent = sales.length
      
      const lowStockCount = products.filter((p) => p.quantity <= p.lowStock).length;
